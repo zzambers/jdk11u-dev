@@ -1157,6 +1157,7 @@ jobs:
           $env:BOOT_JDK = cygpath "$HOME/bootjdk/$env:BOOT_JDK_VERSION" ;
           $env:JT_HOME = cygpath "$HOME/jtreg" ;
           & bash configure
+          --with-target-bits=32
           --with-conf-name=windows-x64
           --with-msvc-toolset-version=14.28
           ${{ matrix.flags }}
