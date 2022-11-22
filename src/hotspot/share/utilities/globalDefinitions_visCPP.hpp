@@ -43,7 +43,9 @@
 # include <time.h>
 # include <fcntl.h>
 # include <limits.h>
+#if _MSC_VER >= 1800
 # include <inttypes.h>
+#endif
 // Need this on windows to get the math constants (e.g., M_PI).
 #define _USE_MATH_DEFINES
 # include <math.h>
@@ -155,6 +157,28 @@ inline int g_isfinite(jdouble f)                 { return _finite(f); }
 
 // Formatting.
 #define FORMAT64_MODIFIER "I64"
+
+// Visual Studio 2010-2012 doesn't provide inttypes.h so provide appropriate definitions here.
+// The 32 bits ones might need I32 but seem to work ok without it.
+#if _MSC_VER < 1800
+#define PRId32       "d"
+#define PRIu32       "u"
+#define PRIx32       "x"
+
+#define PRId64       "I64d"
+#define PRIu64       "I64u"
+#define PRIx64       "I64x"
+
+#ifdef _LP64
+#define PRIdPTR       "I64d"
+#define PRIuPTR       "I64u"
+#define PRIxPTR       "I64x"
+#else
+#define PRIdPTR       "d"
+#define PRIuPTR       "u"
+#define PRIxPTR       "x"
+#endif
+#endif
 
 #define offset_of(klass,field) offsetof(klass,field)
 
