@@ -221,7 +221,7 @@ namespace AccessInternal {
       switch (bs->kind()) {
 #define BARRIER_SET_RESOLVE_BARRIER_CLOSURE(bs_name)                    \
         case BarrierSet::bs_name: {                                     \
-          return PostRuntimeDispatch<typename BarrierSet::GetType<BarrierSet::bs_name>::type:: \
+          return &PostRuntimeDispatch<typename BarrierSet::GetType<BarrierSet::bs_name>::type:: \
             AccessBarrier<ds>, barrier_type, ds>::oop_access_barrier; \
         }                                                               \
         break;
@@ -244,7 +244,7 @@ namespace AccessInternal {
       switch (bs->kind()) {
 #define BARRIER_SET_RESOLVE_BARRIER_CLOSURE(bs_name)                    \
         case BarrierSet::bs_name: {                                       \
-          return PostRuntimeDispatch<typename BarrierSet::GetType<BarrierSet::bs_name>::type:: \
+          return &PostRuntimeDispatch<typename BarrierSet::GetType<BarrierSet::bs_name>::type:: \
             AccessBarrier<ds>, barrier_type, ds>::access_barrier; \
         }                                                                 \
         break;
