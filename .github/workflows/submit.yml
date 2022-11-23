@@ -1168,7 +1168,6 @@ jobs:
           --with-boot-jdk="$env:BOOT_JDK"
           --with-jtreg="$env:JT_HOME"
           --with-default-make-target="product-bundles test-bundles"
-          --with-jvm-features=shenandoahgc
           --enable-jtreg-failure-handler
         working-directory: jdk
 
