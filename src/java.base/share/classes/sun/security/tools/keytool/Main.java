@@ -1174,7 +1174,7 @@ public final class Main {
             }
         } else if (command == GENKEYPAIR) {
             if (keyAlgName == null) {
-                keyAlgName = "DSA";
+                keyAlgName = "RSA";
             }
             doGenKeyPair(alias, dname, keyAlgName, keysize, groupName, sigAlgName);
             kssave = true;
