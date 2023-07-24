@@ -949,7 +949,7 @@ public class KeyToolTest {
     void sqeSelfCertTest() throws Exception {
         remove("x.jks");
         testOK("", "-keystore x.jks -storetype JKS -storepass changeit " +
-                "-keypass changeit -genkeypair -dname CN=olala");
+                "-keypass changeit -genkeypair -dname CN=olala -keyalg DSA");
         testOK("", "-keystore x.jks -storetype JKS -storepass changeit -selfcert");
         testOK("", "-keystore x.jks -storetype JKS -storepass changeit " +
                 "-keypass changeit -selfcert");
@@ -1066,7 +1066,7 @@ public class KeyToolTest {
                 "-alias n4");
         testFail("", "-keystore x.jks -storetype JKS -storepass changeit " +
                 "-keypass changeit -genkeypair -dname CN=olala -keysize 999 " +
-                "-alias n5");
+                "-keyalg DSA -alias n5");
         testOK("", "-keystore x.jks -storetype JKS -storepass changeit " +
                 "-keypass changeit -genkeypair -dname CN=olala -keysize 512 " +
                 "-alias n6");
@@ -1158,7 +1158,7 @@ public class KeyToolTest {
         remove("csr1");
         // PrivateKeyEntry can do certreq
         testOK("", "-keystore x.jks -storetype JKS -storepass changeit " +
-                "-keypass changeit -genkeypair -dname CN=olala -keysize 1024");
+                "-keypass changeit -genkeypair -dname CN=olala -keysize 1024 -keyalg DSA");
         testOK("", "-keystore x.jks -storetype JKS -storepass changeit " +
                 "-certreq -file csr1 -alias mykey");
         testOK("", "-keystore x.jks -storetype JKS -storepass changeit " +
