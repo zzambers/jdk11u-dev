@@ -168,4 +168,23 @@ public class SignatureUtil {
             InvalidKeyException {
         SharedSecrets.getJavaSecuritySignatureAccess().initSign(s, key, params, sr);
     }
+
+    /**
+     * Extracts the digest algorithm name from a signature
+     * algorithm name in either the "DIGESTwithENCRYPTION" or the
+     * "DIGESTwithENCRYPTIONandWHATEVER" format.
+     *
+     * It's OK to return "SHA1" instead of "SHA-1".
+     */
+    public static String extractDigestAlgFromDwithE(String signatureAlgorithm) {
+        signatureAlgorithm = signatureAlgorithm.toUpperCase(Locale.ENGLISH);
+        int with = signatureAlgorithm.indexOf("WITH");
+        if (with > 0) {
+            return signatureAlgorithm.substring(0, with);
+        } else {
+            throw new IllegalArgumentException(
+                    "Unknown algorithm: " + signatureAlgorithm);
+        }
+    }
+
 }
